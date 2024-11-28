@@ -1,0 +1,78 @@
+// Implementatio of Queue in array
+#include<stdio.h>
+#include<stdlib.h>
+#define size 5
+int Queue[size];
+int front=-1, rear= -1;
+void enqueue(int x);
+void dequeue();
+void display();
+int main(){
+	int x, ch;
+	while(1){
+		printf("\n...... Linear Queue Using Array.......\n");
+		printf("\n1. Enqueue\n2. Dequeue \n3. Display\n4. Exit");
+		printf("\n Enter the Choice: ");
+		scanf("%d",&ch);
+		switch(ch){
+			case 1:
+				printf("\nEnter the x: ");
+				scanf("%d",&x);
+				enqueue(x);
+				break;
+			case 2:
+				dequeue();
+				break;
+			case 3:
+				display();
+				break;
+			case 4: 
+				exit(0);
+			default:
+				printf("\nInvalid Choice !");
+		}
+	}
+}
+void enqueue(int x){
+	if(rear==size-1){
+		printf("\n Queue is Full");
+	}
+	else if( rear==-1 && front==-1){
+		front=0;
+		rear=0;
+		Queue[rear]=x;
+	}
+	else{
+		rear++;
+		Queue[rear]=x;
+	}
+}
+void dequeue(){
+	int x;
+	if(rear== -1 && front==-1){
+		printf("Queue is Empty");
+	}
+	else if (front==rear){
+		x=Queue[front];
+		front=-1;
+		rear=-1;
+		printf("%d is deleted");
+	}
+	else{
+		x=Queue[front];
+		front++;
+		printf("%d is deleted",x);
+	}
+}
+void display(){
+	int i;
+	if(rear== -1 && front==-1){
+		printf("Queue is Empty");
+	}
+	else{
+		printf("\n The Queue data are: ");
+		for(i=front; i<=rear; i++){
+			printf("%d\t", Queue[i]);
+		}
+	}
+}
